@@ -29,6 +29,7 @@ class TweetsController < ApplicationController
 
     respond_to do |format|
       if @tweet.save
+        NotifyMentionsJob.perform_later(@tweet.id)
         format.html { redirect_to user_tweet_path(@user.username, @tweet), notice: 'Tweet was successfully created.' }
         format.json { render :show, status: :created, location: @tweet }
       else
