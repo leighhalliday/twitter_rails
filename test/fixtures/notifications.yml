@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: 
+  tweet: 
+  notification_type: MyString
+  read_at: 2016-01-30 17:41:18
+  ref_user: 
+
+two:
+  user: 
+  tweet: 
+  notification_type: MyString
+  read_at: 2016-01-30 17:41:18
+  ref_user: 

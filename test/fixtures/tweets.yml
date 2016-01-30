@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: 
+  body: MyString
+  retweet_count: 
+  like_count: 1
+
+two:
+  user: 
+  body: MyString
+  retweet_count: 
+  like_count: 1
