@@ -1,10 +1,11 @@
 class TweetsController < ApplicationController
+  before_action :set_user
   before_action :set_tweet, only: [:show, :edit, :update, :destroy]
 
   # GET /tweets
   # GET /tweets.json
   def index
-    @tweets = Tweet.all
+    @tweets = @user.tweets.all
   end
 
   # GET /tweets/1
@@ -14,7 +15,7 @@ class TweetsController < ApplicationController
 
   # GET /tweets/new
   def new
-    @tweet = Tweet.new
+    @tweet = @user.tweets.new
   end
 
   # GET /tweets/1/edit
@@ -24,11 +25,11 @@ class TweetsController < ApplicationController
   # POST /tweets
   # POST /tweets.json
   def create
-    @tweet = Tweet.new(tweet_params)
+    @tweet = @user.tweets.new(tweet_params)
 
     respond_to do |format|
       if @tweet.save
-        format.html { redirect_to @tweet, notice: 'Tweet was successfully created.' }
+        format.html { redirect_to user_tweet_path(@user.username, @tweet), notice: 'Tweet was successfully created.' }
         format.json { render :show, status: :created, location: @tweet }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class TweetsController < ApplicationController
   def update
     respond_to do |format|
       if @tweet.update(tweet_params)
-        format.html { redirect_to @tweet, notice: 'Tweet was successfully updated.' }
+        format.html { redirect_to user_tweet_path(@user.username, @tweet), notice: 'Tweet was successfully updated.' }
         format.json { render :show, status: :ok, location: @tweet }
       else
         format.html { render :edit }
@@ -56,15 +57,20 @@ class TweetsController < ApplicationController
   def destroy
     @tweet.destroy
     respond_to do |format|
-      format.html { redirect_to tweets_url, notice: 'Tweet was successfully destroyed.' }
+      format.html { redirect_to user_tweets_url(@user.username), notice: 'Tweet was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
+
+    def set_user
+      @user = User.find_by(username: params[:user_id])
+    end
+
     def set_tweet
-      @tweet = Tweet.find(params[:id])
+      @tweet = @user.tweets.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

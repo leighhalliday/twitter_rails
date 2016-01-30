@@ -1,4 +1,5 @@
-<%= form_for(tweet) do |f| %>
+<% form_url = tweet.persisted? ? user_tweet_url(@user.username tweet) : user_tweets_url(@user.username) %>
+<%= form_for(tweet, url: form_url) do |f| %>
   <% if tweet.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(tweet.errors.count, "error") %> prohibited this tweet from being saved:</h2>
@@ -12,23 +13,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :user %>
-    <%= f.text_field :user %>
-  </div>
-
-  <div class="field">
     <%= f.label :body %>
     <%= f.text_field :body %>
-  </div>
-
-  <div class="field">
-    <%= f.label :retweet_count %>
-    <%= f.text_field :retweet_count %>
-  </div>
-
-  <div class="field">
-    <%= f.label :like_count %>
-    <%= f.number_field :like_count %>
   </div>
 
   <div class="actions">
