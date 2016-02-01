@@ -5,4 +5,8 @@ class User < ApplicationRecord
 
   validates :email, :name, :username, :bio, presence: true
 
+  def to_param
+    username
+  end
+
 end

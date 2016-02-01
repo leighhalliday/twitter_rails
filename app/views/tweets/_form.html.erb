@@ -1,4 +1,4 @@
-<% form_url = tweet.persisted? ? user_tweet_url(@user.username tweet) : user_tweets_url(@user.username) %>
+<% form_url = tweet.persisted? ? user_tweet_url(@user, tweet) : user_tweets_url(@user) %>
 <%= form_for(tweet, url: form_url) do |f| %>
   <% if tweet.errors.any? %>
     <div id="error_explanation">
