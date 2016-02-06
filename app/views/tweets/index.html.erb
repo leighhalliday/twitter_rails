@@ -9,19 +9,17 @@
       <th>Body</th>
       <th>Retweet count</th>
       <th>Like count</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @tweets.each do |tweet| %>
       <tr>
-        <td><%= tweet.user %></td>
         <td><%= tweet.body %></td>
         <td><%= tweet.retweet_count %></td>
         <td><%= tweet.like_count %></td>
         <td><%= link_to 'Show', user_tweet_path(@user, tweet) %></td>
-        <td><%= link_to 'Destroy', user_tweet_path(@user, tweet), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

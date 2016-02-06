@@ -6,6 +6,8 @@ class Tweet < ApplicationRecord
 
   before_create :init_counts
 
+  scope :latest, ->(count = 25) { order(id: :desc).limit(count) }
+
   private
 
   def init_counts

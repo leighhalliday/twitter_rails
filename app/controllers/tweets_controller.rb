@@ -5,7 +5,7 @@ class TweetsController < ApplicationController
   # GET /tweets
   # GET /tweets.json
   def index
-    @tweets = @user.tweets.all
+    @tweets = @user.tweets.latest
   end
 
   # GET /tweets/1
